@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration/Login Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <!--Login Image-->
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="./assets/13.jpg" class="img-fluid" alt="Sample image" />
+          </div>
+
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+            <form action="" method="post" id="form">
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label">Email address</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control form-control-lg"
+                  placeholder="Enter a valid email address"
+                />
+                <br />
+                <span id="emailMsg"> </span>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <label class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control form-control-lg"
+                  placeholder="Enter password"
+                />
+                <br />
+                <span id="passMsg"></span>
+              </div>
+              <!--Login Button-->
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button
+                  type="button"
+                  class="contactform-buttons btn btn-primary btn-lg"
+                  id="submit"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem"
+                >
+                  Login
+                </button>
+                <p class="small fw-bold mt-2 pt-1 mb-0">
+                  Don't have an account?
+                  <a href="./registration.html" class="link-danger">Register</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      $(document).ready(function () {
+        //use keyup function to check the input email
+        $("#email").keyup(function () {
+          if (validateEmail()) {
+            //if the email is validated
+            $("#email").css("border", "2px solid green");
+            $("#emailMsg").html(
+              '<p style="color: green">Valid Email Address</p>'
+            );
+          } else {
+            // if the email is not validated
+            $("#email").css("border", "2px solid red");
+            $("#emailMsg").html(
+              '<p style="color: red">Invalid Email Address</p>'
+            );
+          }
+        });
+        $("#password").keyup(function () {
+          if (validatePassword()) {
+            //if the password is validated
+            $("#password").css("border", "2px solid green");
+            $("#passMsg").html('<p style="color: green">Valid Password</p>');
+          } else {
+            // if the password is not validated
+            $("#password").css("border", "2px solid red");
+            $("#passMsg").html('<p style="color: red">Invalid Password</p>');
+          }
+        });
+        //function for empyty
+        $("#submit").click(function () {
+          if ($("#email").val() === "") {
+            $("#email").css("border", "2px solid red");
+            $("#emailMsg").html(
+              '<p style="color: red">Please Enter the Email</p>'
+            );
+          }
+          if ($("#password").val() === "") {
+            $("#password").css("border", "2px solid red");
+            $("#passMsg").html(
+              '<p style="color: red">Please Enter the Password</p>'
+            );
+          }
+          if (validateEmail() && validatePassword()) {
+            $("#form").submit();
+          }
+        });
+      });
+      function validateEmail() {
+        //get value of input email
+        var email = $("#email").val();
+        //use reular expression
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,3})$/;
+        if (reg.test(email)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function validatePassword() {
+        //get value of input password
+        var pass = $("#password").val();
+        if (pass.length >= 8) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

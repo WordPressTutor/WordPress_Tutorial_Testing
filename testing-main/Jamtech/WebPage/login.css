@@ -1,0 +1,21 @@
+*,*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    top: 100px;
+    width: 300px;
+    left: 500px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+}
